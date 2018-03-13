@@ -216,7 +216,9 @@ h1 {
   justify-content: space-around;
   align-items: center;
   font-size: 2rem;
+  margin-bottom: 1vh;
   background-color: rgb(211, 211, 211);
+  box-shadow: 5px 10px #6d6d6d;
 }
 #chart-box {
   /* display: flex;
@@ -232,6 +234,8 @@ font-family: 'Roboto', sans-serif;
   justify-content: space-around;
   padding: 1vh 1vw;
   margin-bottom: 4vh;
+  box-shadow: 5px 10px #6d6d6d;
+
 }
 
 #soP {
