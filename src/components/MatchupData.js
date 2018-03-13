@@ -133,8 +133,8 @@ export class MatchupData extends Component {
     
     // average 
     console.log(mD)
-    var avgComparison = (((mD.BA - (pD.H / (pD.BF - pD.BB))).toFixed(3)));
-    var batterComparison = (((mD.BA - bD.BA).toFixed(3)));
+    var avgComparison = (((mD.BA - (pD.H / (pD.BF - pD.BB))).toFixed(0)));
+    var batterComparison = (((mD.BA - bD.BA).toFixed(0)));
     var batterAvg = (bD.BA);
     var pitcherAvg = (pD.H / (pD.BF - pD.BB)).toFixed(3).replace(/^[0]+/g, "");
     var matchupComparison = mD.BA - pitcherAvg;
@@ -145,8 +145,8 @@ export class MatchupData extends Component {
     var matchupHrPercent = ((mD.HR / mD.AB) * 100).toFixed(1);
     var batterHrPercent = ((bD.HR / bD.AB) * 100).toFixed(1);
     var batterHrDifference = (((matchupHrPercent - batterHrPercent) / batterHrPercent) * 100).toFixed(1);
-    var pitcherHrPercent = ((pD.HR / (pD.BF - pD.BB)) * 100).toFixed(1)
-    var hrPercentDifference = (((matchupHrPercent - pitcherHrPercent) / pitcherHrPercent) * 100).toFixed(1);
+    var pitcherHrPercent = ((pD.HR / (pD.BF - pD.BB)) * 100).toFixed(0)
+    var hrPercentDifference = (((matchupHrPercent - pitcherHrPercent) / pitcherHrPercent) * 100).toFixed(0);
 
     // strike outs
     var matchupSoPercent = ((mD.SO / mD.AB) * 100).toFixed(1);
@@ -240,7 +240,7 @@ export class MatchupData extends Component {
         rotated: false,
         y: {
           label: {
-            text: 'Batting Average',
+            text: 'Home Runs / AB',
             position: 'inner-top',
           }
         },
@@ -254,7 +254,8 @@ export class MatchupData extends Component {
       labels: true,
       grid: {
         y: {
-          show: true
+          show: true,
+          lines: [{ value: (pD.HR / (pD.BF - pD.BB))}]
         },
         x: {
           show: true,
@@ -275,7 +276,7 @@ export class MatchupData extends Component {
     const soPercent = {
       columns: [
         ['Matchup', (mD.SO / mD.PA).toFixed(3)],
-        [`${pitcherLast}`, (pD.SO / pD.BF).toFixed(3)],
+        [`${pitcherLast}`, (pD.SO / (pD.BF - pD.BB)).toFixed(3)],
         [`${batterLast}`, (bD.SO / bD.PA).toFixed(3)]
       ],
       type: 'bar',
@@ -284,7 +285,7 @@ export class MatchupData extends Component {
         rotated: false,
         y: {
           label: {
-            text: 'Batting Average',
+            text: 'Strike Outs / AB',
             position: 'inner-top',
           }
         },
@@ -298,7 +299,8 @@ export class MatchupData extends Component {
       labels: true,
       grid: {
         y: {
-          show: true
+          show: true,
+          lines: [{ value: (pD.SO / (pD.BF - pD.BB)) }]
         },
         x: {
           show: true,
@@ -348,7 +350,7 @@ export class MatchupData extends Component {
                     <h2>{mD.H} / {mD.AB}</h2>
                     <h2 className={(avgComparison >= 0) ? 'green' : 'red' }>{mD.BA} BA</h2>
                   </div>
-                  <h2 id='avg-comparison' className={(avgComparison >= 0) ? 'green' : 'red'}>{(avgComparison >= 0) ? '+' : ''} {avgCompPer} %</h2>
+                  <h2 id='avg-comparison' className={(avgComparison >= 0) ? 'green' : 'red'}>{(avgComparison >= 0) ? '+' : ''} {avgCompPer} % vs {pitcherLast}'s Opp BA</h2>
                 </div>
                 <div className='pitcher-stat left-box' style={pitcherBorder}>
                   <h2>{pitcher.player.LastName} {pitcherAvg} Opp. BA (2017)</h2>
@@ -374,7 +376,7 @@ export class MatchupData extends Component {
                     <h2>{mD.HR}/{mD.AB}</h2>
                     <h2 className={(hrPercentDifference >= 0) ? 'green' : 'red'}>HR in {matchupHrPercent}% of ABs</h2>
                   </div>
-                  <h2 className={(hrPercentDifference > 0) ? 'green' : 'red'}>{(hrPercentDifference > 0) ? '+' : ''}{hrPercentDifference}% </h2>
+                  <h2 className={(hrPercentDifference > 0) ? 'green' : 'red'}>{(hrPercentDifference > 0) ? '+' : ''}{hrPercentDifference}% vs {pitcherLast}'s HR Rt</h2>
                 </div>
                   <div className='pitcher-stat left-box' style={pitcherBorder}>
                     <h2>{pitcherLast} {pitcherHrPercent}% HR Rate (2017)</h2>
@@ -391,7 +393,7 @@ export class MatchupData extends Component {
             <h3 className='chart-title'>Strike Out Percentage</h3>
             <div className='graph-box'>
               <div className='chart-box'>
-                <C3Chart data={soPercent} axis={soPercent.axis} color={soPercent.color} size={soPercent.size} bar={soPercent.bar} title={soPercent.title} grid={homeRuns.grid}/>     
+                <C3Chart data={soPercent} axis={soPercent.axis} color={soPercent.color} size={soPercent.size} bar={soPercent.bar} title={soPercent.title} grid={soPercent.grid}/>     
               </div>
               <div className='stats-above left-box'>
                 <div className='matchup-comp-box left-box' style={soBorder}>
@@ -400,7 +402,7 @@ export class MatchupData extends Component {
                   <h2>{mD.SO}/{mD.AB} SO/AB</h2>
                   <h2 className={(matchupSoDifference >= 0) ? 'red' : 'green'}>{matchupSoPercent}% SO Rate</h2>
                 </div>
-                  <h2 className={(matchupSoDifference >= 0) ? 'red' : 'green'}>{(matchupSoDifference > 0) ? '+' : ''}{matchupSoDifference}%</h2>
+                  <h2 className={(matchupSoDifference >= 0) ? 'red' : 'green'}>{(matchupSoDifference > 0) ? '+' : ''}{matchupSoDifference}% vs {pitcherLast}'s SO Rt</h2>
                 </div>
                 <div className='pitcher-stat left-box' style={pitcherBorder}>
                   <h2>{pitcherLast} (2017): {pitcherSoPercent}% SO Rate</h2>
