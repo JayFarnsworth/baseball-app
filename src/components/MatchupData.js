@@ -3,7 +3,7 @@ import C3Chart from 'react-c3js';
 import 'c3/c3.css';
 import { runInThisContext } from 'vm';
 
-const FormatStat = ({ stat }) => <h2 className={(stat >= 0) ? 'green' : 'red'}>{(stat >= 0) ? '+' : '-'}{Math.abs(stat) * 1000} pts.</h2>
+// const FormatStat = ({ stat }) => <h2 className={(stat >= 0) ? 'green' : 'red'}>{(stat >= 0) ? '+' : ''}{stat}% vs {pitcherLast}</h2>
 
 export class MatchupData extends Component {
   constructor(props) {
@@ -123,6 +123,8 @@ export class MatchupData extends Component {
     var pitcherBorder = {
       border: '5px solid ' + `${pitcherColor}`,
     }
+
+
    
     var mD = this.state.matchupData;
     var bD = this.state.batterData;
@@ -138,7 +140,43 @@ export class MatchupData extends Component {
     var matchupComparison = mD.BA - pitcherAvg;
     var avgCompPer = (((matchupComparison) / pitcherAvg) * 100).toFixed(2) ;
     var batterCompPer = ((batterComparison / pitcherAvg) * 100).toFixed(2);
-    var avgColor = this.getColorPercent(avgCompPer);
+
+    // home runs 
+    var matchupHrPercent = ((mD.HR / mD.AB) * 100).toFixed(1);
+    var batterHrPercent = ((bD.HR / bD.AB) * 100).toFixed(1);
+    var batterHrDifference = (((matchupHrPercent - batterHrPercent) / batterHrPercent) * 100).toFixed(1);
+    var pitcherHrPercent = ((pD.HR / (pD.BF - pD.BB)) * 100).toFixed(1)
+    var hrPercentDifference = (((matchupHrPercent - pitcherHrPercent) / pitcherHrPercent) * 100).toFixed(1);
+
+    // strike outs
+    var matchupSoPercent = ((mD.SO / mD.AB) * 100).toFixed(1);
+    var batterSoPercent = ((bD.SO / bD.AB) * 100).toFixed(1);
+    var pitcherSoPercent = ((pD.SO / (pD.BF - pD.BB)) * 100).toFixed(1);
+    var matchupSoDifference = (((matchupSoPercent - pitcherSoPercent) / pitcherSoPercent) * 100).toFixed(0);
+    var batterSoDifference = (((matchupSoPercent - batterSoPercent) / batterSoPercent) * 100).toFixed(0);
+
+    // graph positive or negative colors
+    if (avgComparison >= 0) {
+      var avgColor = 'green';
+    } else var avgColor = 'rgb(179, 0, 0)';
+    if (hrPercentDifference >= 0) {
+      var hrColor = 'green';
+    } else var hrColor = 'rgb(179, 0, 0)';
+    if (matchupSoDifference <= 0) {
+      var soColor = 'green';
+    } else var soColor = 'rgb(179, 0, 0)';
+    var avgBorder = {
+      border: '5px solid ' + avgColor,
+    };
+    var hrBorder = {
+      border: '5px solid ' + hrColor,
+    };    
+    var soBorder = {
+      border: '5px solid ' + soColor,
+    };
+    console.log('colors', avgColor, hrColor, soColor)
+
+  
     const average = {
       columns: [
         ['Matchup', mD.BA],
@@ -160,7 +198,7 @@ export class MatchupData extends Component {
       },
       order: null,
       color: {
-        pattern: ['green', pitcherColor, batterColor]
+        pattern: [avgColor, pitcherColor, batterColor]
       },
       labels: true,
       grid: {
@@ -211,13 +249,12 @@ export class MatchupData extends Component {
       },
       order: null,
       color: {
-        pattern: ['green', pitcherColor, batterColor]
+        pattern: [hrColor, pitcherColor, batterColor]
       },
       labels: true,
       grid: {
         y: {
-          show: true,
-          lines: [{ value: pitcherAvg }]
+          show: true
         },
         x: {
           show: true,
@@ -256,13 +293,12 @@ export class MatchupData extends Component {
       },
       order: null,
       color: {
-        pattern: ['green', pitcherColor, batterColor]
+        pattern: [soColor, pitcherColor, batterColor]
       },
       labels: true,
       grid: {
         y: {
-          show: true,
-          lines: [{ value: pitcherAvg }]
+          show: true
         },
         x: {
           show: true,
@@ -281,22 +317,6 @@ export class MatchupData extends Component {
     };
 
 
-
-
-    // home runs 
-    var matchupHrPercent = ((mD.HR / mD.AB) * 100).toFixed(1);
-    var batterHrPercent = ((bD.HR / bD.AB) * 100).toFixed(1);
-    var batterHrDifference = (((matchupHrPercent - batterHrPercent) / batterHrPercent) * 100).toFixed(1);
-    var pitcherHrPercent = ((pD.HR / (pD.BF - pD.BB)) * 100).toFixed(1)
-    var hrPercentDifference = (((matchupHrPercent - pitcherHrPercent) / pitcherHrPercent) * 100).toFixed(1);
-
-    // strike outs
-    var matchupSoPercent = ((mD.SO / mD.AB) * 100).toFixed(1);
-    var batterSoPercent = ((bD.SO / bD.AB) * 100).toFixed(1);
-    var pitcherSoPercent = ((pD.SO / (pD.BF - pD.BB)) * 100).toFixed(1);
-    var matchupSoDifference = (((matchupSoPercent - pitcherSoPercent) / pitcherSoPercent) * 100).toFixed(0);
-    var batterSoDifference = (((matchupSoPercent - batterSoPercent) / batterSoPercent) * 100).toFixed(0);
-
     return (
 
       <div>
@@ -314,6 +334,7 @@ export class MatchupData extends Component {
             <h3>{mD.BB} BB</h3>
             <h3 className={(matchupSoDifference >= 0) ? 'red' : 'green'}>{mD.SO} SO</h3>
           </div> }
+          {(this.state.dataLoaded !== 3) ? '' : 
           <div id='chart-box'>
             <h3 className='chart-title'>Batting Average</h3>
             <div className='graph-box'>
@@ -321,7 +342,7 @@ export class MatchupData extends Component {
                 <C3Chart data={average} axis={average.axis} color={average.color} grid={average.grid} groups={average.groups} size={average.size} bar={average.bar} order={average.order} title={average.title} tooltip={average.tooltip}/>
               </div>
               <div className='stats-above left-box'>
-                <div className='matchup-comp-box left-box'>
+                <div className='matchup-comp-box left-box' style={avgBorder}>
                   <h2>{batterLast} vs {pitcherLast}:</h2>
                   <div className='matchup-avg'>
                     <h2>{mD.H} / {mD.AB}</h2>
@@ -331,11 +352,11 @@ export class MatchupData extends Component {
                 </div>
                 <div className='pitcher-stat left-box' style={pitcherBorder}>
                   <h2>{pitcher.player.LastName} {pitcherAvg} Opp. BA (2017)</h2>
-                  <h2 className={(avgComparison >= 0) ? 'green' : 'red'}>{(avgComparison >= 0) ? '+' : ''} {(Math.abs(avgComparison) * 1000).toFixed(0)} pts.</h2>
+                  <h2 className={(avgComparison >= 0) ? 'green' : 'red'}>{(avgComparison >= 0) ? '+' : ''} {avgCompPer}% vs {pitcherLast}</h2>
                 </div>
                 <div className='batter-stat left-box' style={batterBorder}>
                   <h2>{batter.player.LastName} {batterAvg} BA (2017)</h2>
-                  <FormatStat stat={batterComparison} />
+                  <h2 className={(batterCompPer >= 0) ? 'green' : 'red'}>{(batterCompPer >= 0) ? '+' : ''}{batterCompPer}% vs {pitcherLast}</h2>
                 </div>
               </div>
 
@@ -347,7 +368,7 @@ export class MatchupData extends Component {
               </div>
 
               <div className='stats-above left-box'>
-                <div className='matchup-comp-box left-box'>
+                <div className='matchup-comp-box left-box' style={hrBorder}>
                   <h2>{batterLast} vs {pitcherLast}</h2>
                   <div className='matchup-avg'>
                     <h2>{mD.HR}/{mD.AB}</h2>
@@ -373,7 +394,7 @@ export class MatchupData extends Component {
                 <C3Chart data={soPercent} axis={soPercent.axis} color={soPercent.color} size={soPercent.size} bar={soPercent.bar} title={soPercent.title} grid={homeRuns.grid}/>     
               </div>
               <div className='stats-above left-box'>
-                <div className='matchup-comp-box left-box'>
+                <div className='matchup-comp-box left-box' style={soBorder}>
                 <h2>{batterLast} vs {pitcherLast}</h2>
                 <div className='matchup-avg'>
                   <h2>{mD.SO}/{mD.AB} SO/AB</h2>
@@ -392,7 +413,7 @@ export class MatchupData extends Component {
               </div>
             </div>
 
-          </div>
+          </div>}
         </div>
         </div>
       </div>
