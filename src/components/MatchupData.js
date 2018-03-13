@@ -169,8 +169,7 @@ export class MatchupData extends Component {
           lines: [{value: pitcherAvg}]
         },
         x: {
-          show: true,
-          lines: [{value: .3}]
+          show: true
         }
       },
       size: {
@@ -222,7 +221,6 @@ export class MatchupData extends Component {
         },
         x: {
           show: true,
-          lines: [{ value: .3 }]
         }
       },
       size: {
@@ -268,7 +266,6 @@ export class MatchupData extends Component {
         },
         x: {
           show: true,
-          lines: [{ value: .3 }]
         }
       },
       size: {
@@ -346,7 +343,7 @@ export class MatchupData extends Component {
             <h3 className='chart-title'>Home Runs Per At Bat</h3>
             <div className='graph-box'>
               <div className='chart-box'>
-                <C3Chart data={homeRuns} axis={homeRuns.axis} color={homeRuns.color} size={homeRuns.size} bar={homeRuns.bar} title={homeRuns.title}/>
+                <C3Chart data={homeRuns} axis={homeRuns.axis} color={homeRuns.color} size={homeRuns.size} bar={homeRuns.bar} title={homeRuns.title} grid={homeRuns.grid}/>
               </div>
 
               <div className='stats-above left-box'>
@@ -373,7 +370,7 @@ export class MatchupData extends Component {
             <h3 className='chart-title'>Strike Out Percentage</h3>
             <div className='graph-box'>
               <div className='chart-box'>
-                <C3Chart data={soPercent} axis={soPercent.axis} color={soPercent.color} size={soPercent.size} bar={soPercent.bar} title={soPercent.title}/>     
+                <C3Chart data={soPercent} axis={soPercent.axis} color={soPercent.color} size={soPercent.size} bar={soPercent.bar} title={soPercent.title} grid={homeRuns.grid}/>     
               </div>
               <div className='stats-above left-box'>
                 <div className='matchup-comp-box left-box'>
