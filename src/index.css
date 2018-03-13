@@ -1,0 +1,315 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+
+* {
+  font-family: 'Nunito', sans-serif;
+}
+
+h1 {
+  font-size: 5vh;
+  margin: 2vh;
+  font-family: 'Nunito', sans-serif;
+}
+#search-boxes {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.search-result {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  transition: all .1s ease-in-out;
+  font-family: 'Nunito', sans-serif;
+  padding: 2vh 0;
+}
+.search-result h4 {
+  margin-left: 1vw;
+}
+.search-result:nth-child(odd) {
+  background-color: rgb(211, 211, 211);
+}
+.search-result:nth-child(even) {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(211, 211, 211);
+}
+.search-result:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.search-input {
+  width: 40.5vw;
+  height: 6vh;
+  font-size: 1.4rem;
+}
+
+.search-button {
+  width: 15vw;
+  height: 4vh;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 40vw;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+.result-img{
+  height: 3vh;
+  width: auto;
+}
+
+.show {
+  display: block;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+#batter {
+  border: 6px solid purple;
+  height: 30vh;
+  width: 40vw;
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(211, 211, 211);
+  overflow: hidden;
+}
+
+#batter-pic {
+  height: 25vh;
+  width: auto;
+  margin: 1vw;
+}
+#batter-info {
+  height: 30vh;
+  text-align: left;
+  font-family: 'Nunito', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 1vh;
+  font-size: 1rem;
+}
+#batter-info h3 {
+  margin: 1vh 0;
+}
+#batter-name {
+  font-size: 1.4rem;
+  margin-bottom: 1vh;
+}
+#pitcher-info {
+  text-align: left;
+  font-family: 'Nunito', sans-serif;
+}
+#pitcher-name {
+  font-size: 1.4rem;
+  margin-bottom: 1vh;
+}
+#pitcher-info h3 {
+  margin: 1vh 0;
+}
+#pitcher-info {
+  height: 30vh;
+  text-align: left;
+  font-family: 'Nunito', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 1vh;
+  font-size: 1rem;
+}
+
+#pitcher {
+  border: 6px solid CornflowerBlue;
+  height: 30vh;
+  width: 40vw;
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(211, 211, 211);
+}
+.hidden {
+  visibility: hidden;
+}
+
+#pitcher-pic {
+  height: 25vh;
+  width: auto;
+  margin: 1vw;
+}
+
+#matchup-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+}
+#matchup-button {
+  height: 8vh;
+  width: 25vw;
+  font-size: 1.5rem;
+  margin: 1vh;
+}
+/* Data Boxes */
+#data-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#number-stats {
+  font-family: 'Nunito', sans-serif;
+  width: 80vw;
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 2rem;
+  background-color: rgb(211, 211, 211);
+}
+#chart-box {
+  /* display: flex;
+  flex-direction: row; */
+  width: 80vw;
+  height: 50vh;
+font-family: 'Roboto', sans-serif;
+}
+.graph-box {
+  background-color: rgb(211, 211, 211);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 1vh 1vw;
+  margin-bottom: 4vh;
+}
+
+#soP {
+  background-color: rgb(211, 211, 211);
+}
+.c3-axis-x .tick {
+   display: none;
+}
+#matchup-names {
+  font-size: 2rem;
+  font-family: 'Nunito', sans-serif;
+  text-decoration: underline;
+  margin: 2vh 0;
+}
+
+.stats-above {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 0 2vw;
+}
+.chart-title {
+  font-size: 2rem;
+  padding: 2vh;
+  margin-right: 5vw;
+}
+.chart-box {
+  margin: 2rem;
+}
+.green {
+  color: rgb(0, 110, 0);
+}
+.red {
+  color: rgb(155, 2, 2)
+}
+.left-box {
+  padding: 0 3vw;
+}
+.matchup-avg{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.matchup-avg h2 {
+  margin: 0 1vw;
+}
+.matchup-comp-box {
+  border: 5px solid green;
+  padding: 1rem;
+  font-size: 1.2rem;
+  width: 25vw;
+}
+.matchup-comp-box h2 {
+  margin-bottom: .2rem;
+}
+.batter-stat {
+  border: 5px solid purple;
+  padding: 1rem;
+  font-size: 1rem;
+  width: 20=5vw;
+}
+.batter-stat h2{
+  margin-bottom: .2rem;
+}
+.pitcher-stat {
+  padding: 1rem;
+  border: 5px solid cornflowerblue;
+  font-size: 1rem;
+  width: 25vw;
+}
+.pitcher-stat h2 {
+  margin-bottom: .2rem;
+}
+.hide {
+  display: none;
+}
+
+/* c3 */
+.c3-chart-texts {
+  fill: black;
+}

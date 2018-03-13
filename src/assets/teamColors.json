@@ -1,0 +1,155 @@
+{
+  "mlbColors": [
+    {
+      "name": "Tigers",
+      "colors": {
+        "primary": "#0C2340",
+        "secondary": "#FA4616"
+      }},{
+    "name": "Brewers",
+    "colors": {
+      "primary": "#13294B",
+      "secondary": "#85714D"
+    }},{ 
+    "name": "Marlins",
+    "colors": {
+      "primary": "#ED6F2E",
+      "secondary": "#0077C8"
+    }},{
+    "name":"Angels",
+    "colors": {
+      "primary": "#003263",
+      "secondary": "#BA0021"
+    }},{
+    "name": "Dodgers",
+    "colors": {
+      "primary": "rgb(3, 94, 212)",
+      "secondary": "#E4002B"
+    }},{
+    "name": "Royals",
+    "colors": {
+      "primary": "#004687",
+      "secondary": "#7AB2DD"
+    }},{
+    "name": "Astros",
+    "colors": {
+      "primary": "#002D62",
+      "secondary": "#EB6E1F"
+    }},{
+    "name": "Rockies",
+    "colors": {
+      "primary": "#330072",
+      "secondary": "#C4CED4"
+    }},{
+    "name": "Indians",
+    "colors": {
+      "primary": "#0C2340",
+      "secondary": "#D50032"
+    }},{
+    "name": "Reds",
+    "colors": {
+      "primary": "#D50032",
+      "secondary": "#000000"
+    }},{
+    "name": "White Sox",
+     "colors": {
+      "primary": "#27251F",
+      "secondary": "#8A8D8F"
+    }},{
+    "name": "Cubs",
+      "colors": {
+      "primary": "#002F6C",
+      "secondary": "#C8102E"
+    }},{
+    "name": "Red Sox",
+    "colors": {
+      "primary": "#C8102E",
+      "secondary": "#0C2340"
+    }},{
+    "name": "Orioles",
+    "colors": {
+      "primary": "#FC4C02",
+      "secondary": "#27251F"
+    }},{
+    "name": "Braves",
+    "colors": {
+      "primary": "#BA0C2F",
+      "secondary": "#0C2340"
+    }},{
+    "name": "Diamondbacks",
+    "colors": {
+      "primary": "#A71930",
+      "secondary": "#E3D4AD"
+    }},{
+    "name": "Nationals",
+    "colors": {
+      "primary": "#BA122B",
+      "secondary": "#14225A"
+    }},{
+    "name": "Blue Jays",
+    "colors": {
+      "primary": "#134A8E",
+      "secondary": "#1D2D5C"
+    }},{
+    "name": "Rangers",
+    "colors": {
+      "primary": "#C0111F",
+      "secondary": "#003278"
+    }},{
+    "name": "Rays",
+    "colors": {
+      "primary": "#092C5C",
+      "secondary": "#8FBCE6"
+    }},{
+    "name": "Cardinals",
+    "colors": {
+      "primary": "#BA0C2F",
+      "secondary": "#0C2340"
+    }},{
+    "name": "Mariners",
+    "colors": {
+      "primary": "#0C2340",
+      "secondary": "#00685E"
+    }},{
+    "name": "Giants",
+    "colors": {
+      "primary": "#FA4616",
+      "secondary": "#27251F"
+    }},{
+    "name": "Padres",
+    "colors": {
+      "primary": "#041E42",
+      "secondary": "#A2AAAD"
+    }},{
+    "name": "Pirates",
+    "colors": {
+      "primary": "#27251F",
+      "secondary": "#FFC72C"
+    }},{
+    "name": "Phillies",
+    "colors": {
+      "primary": "#BA0C2F",
+      "secondary": "#003087"
+    }},{
+    "name": "Athletics",
+    "colors": {
+      "primary": "#034638",
+      "secondary": "#FFB81C"
+    }},{
+    "name": "Yankees",
+    "colors": {
+      "primary": "#003087",
+      "secondary": "#E4002C"
+    }},{
+    "name": "Mets",
+    "colors": {
+      "primary": "#002D72",
+      "secondary": "#FC4C02"
+    }},{
+    "name": "Twins",
+    "colors": {
+      "primary": "#0C2340",
+      "secondary": "#BA0C2F"
+    }}
+  ]
+}
